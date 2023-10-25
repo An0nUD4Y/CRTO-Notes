@@ -1,0 +1,32 @@
+# Initial Enumeration (On Each intermediate Machine)
+
+- [ ]  Check running processes if we have process running as another user, We can just steal the process token.
+- [ ]  Check for Applocker Policies and constrained Mode.
+- [ ]  Dump Credentials using Mimikatz.
+- [ ]  Dump kerberos tickets. And check for TGTs. (Rubeus.exe dump)
+- [ ]  Enumerate for Inbound, Outdound or Bidirectional Forest Trusts on each Domain (Child and Parents)
+- [ ]  For inbound Trusts , check if members in current domain are part of any group in foreign domain (Get-DomainForeignGroupMember -Domain dev-studio.com)
+- [ ]  For outbound Trusts, Abuse Trusted Domain Objets (TDO) to get access as Domain User. Then look for other attacks Kerberoasting, RBCD, Constrained Delegation, Unconstrained Delegation or Vulnerable Templates or something else to get access to DC.
+- [ ]  Check if any SQL-Server links that are compromised lies in some other forest, then use that to further escalate to the Target Domain.
+- [ ]  Enumerate stored Credentials (DPAPI) as both Domain User and Local Admin. Dump stored credentials from Vault (DPAPI) - Web Credentials , Windows Credentials.
+- [ ]  Check if any process running as other user , steal its token and Check for access on other machines using its token (Find-LocalAdminAccess).
+- [ ]  Check for Local Admin Access on various machines from current user.
+- [ ]  Check for Domain Admins access on various machines
+- [ ]  Check for DC Replication rights to perform DCSync Attack.
+- [ ]  Check for Unconstrained Delegation (If a Machine has unconstrained delegation then ESC8 can be used to get access to that machine and later on abuse Unconstrained delegation)
+- [ ]  Check for constrained Delegation
+- [ ]  Check for RBCD
+- [ ]  Have WriteProperty, GenericAll, GenericWrite or WriteDacl on a computer/User Object
+    - [ ]  Check if RBCD can be configured and abused
+    - [ ]  Check for GenericAll, GenericWrite on user or computer objects and modify/add msDS-KeyCredentialLink attribute to abuse Shadow Credentials.
+    - [ ]  Check if we are able to reset the User Password
+    - [ ]  Check if we can Set-SPN or Disable Kerberos Pre-Auth to Perform Targetted Kerberoasting and Roast the Account.
+- [ ]  To get Local Admin access or Local Priv Escalation, Use KrbRelay with RBCD or with Shadow Credentials.
+- [ ]  Check Certificate Authority (CA’s) and if present look for Misconfigured/Vulnerable Templates (ESC1) - ENROLLEE_SUPPLIES_SUBJECT , If you found ESC1 , then you can compromise the Domain Admins or Any Domain Users.
+- [ ]  Check if NTLM Relaying to ADCS HTTP Endpoints (ESC8) ****is possible to abuse.
+- [ ]  Check for Vulnerable GPO , and find the associated OU and the Computers/Users, Then Modify the GPO to get beacon.
+- [ ]  Check if you can a new GPO and Configure it , and then link it to any OU where the interesting Users/Computers may be present to get beacon on them.
+- [ ]  Check for SQL Servers and SQL Links and Look for sysadmin (on all links) priv or XP_CMDSHELL enabled or not.
+- [ ]  Check if any SQL Servers have any interesting databases , where credentials or anything interesting may be stored.
+- [ ]  Check if any accessible shares have any interesting files.
+- [ ]  Check if LAPS is being used and try to abuse it.
