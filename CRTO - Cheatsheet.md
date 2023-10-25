@@ -16,8 +16,38 @@ Modified By : An0nud4y ( Twitter: [https://twitter.com/an0nud4y](https://twitter
 > Access to my **CRTO** Notes is restricted due to Policy. If you are enrolled in CRTO ping me on discord (an0nud4y) or [https://an0nud4y.com](https://an0nud4y.com) to get my CRTO notes access.
 > 
 
-### MISC
+---
+# Table of Contents
+- [MISC](#misc)
+- [Command & Control](#command--control)
+- [Setup CS Listeners](#setup-cs-listeners)
+- [Defender Antivirus / AMSI](#defender-antivirus--amsi)
+- [Initial Compromise](#initial-compromise)
+- [Host Reconnaissance](#host-reconnaissance)
+- [Host Persistence](#host-persistence-normal--privileged)
+- [Host Privilege Escalation](#host-privilege-escalation)
+- [Credential Theft](#credential-theft)
+- [Domain Recon](#domain-recon)
+- [User Impersonation](#user-impersonation)
+- [Lateral Movement](#lateral-movement)
+- [Session Passing](#session-passing)
+- [Pivoting](#pivoting)
+- [Data Protection API (DPAPI)](#data-protection-api-dpapi)
+- [Kerberos](#kerberos)
+- [Active Directory Certificate Services](#active-directory-certificate-services)
+- [Group Policy](#group-policy)
+- [MSSQL Servers](#mssql-servers)
+- [Domain Dominance](#domain-dominance)
+- [Forest & Domain Trusts](#forest--domain-trusts)
+- [LAPS](#laps)
+- [AppLocker](#applocker)
+- [Data Exfiltration](#data-exfiltration)
+- [Reference](#reference)
 
+
+---
+### MISC
+<a name="MISC"></a>
 ```powershell
 # Run a python3 webserver
 $ python3 -m http.server
@@ -234,7 +264,7 @@ http-stager {
 }
 ```
 
-## Setup CS Listeners
+### Setup CS Listeners
 
 - Setting up the SMB Listener
     - Default pipe name is quite well signatured.  A good strategy is to emulate names known to be used by common applications or Windows itself.
